@@ -18,7 +18,7 @@ router.put(
   patientController.updatePatientById
 );
 
-// router.post('/searchpatient', authenticate, patientController.searchPatient);
+router.post('/searchpatient', authenticate, patientController.searchPatient);
 
 router.delete(
   '/deletepatient/:hnId',

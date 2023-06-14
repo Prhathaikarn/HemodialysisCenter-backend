@@ -8,6 +8,7 @@ exports.getUserbyId = (id) =>
       id,
     },
   });
+
 exports.getUserbyNurseId = (nurseId) =>
   User.findOne({
     where: {

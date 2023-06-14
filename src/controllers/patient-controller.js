@@ -52,15 +52,15 @@ exports.updatePatientById = async (req, res, next) => {
   }
 };
 
-// exports.searchPatient = async (req, res, next) => {
-//   try {
-//     const result = await patientService.searchPatient(req.body.search);
-//     console.log(req.body);
-//     res.status(200).json(result);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+exports.searchPatient = async (req, res, next) => {
+  try {
+    const result = await patientService.searchPatient(req.body.search);
+    console.log(req.body);
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+};
 
 exports.deletePatient = async (req, res, next) => {
   try {

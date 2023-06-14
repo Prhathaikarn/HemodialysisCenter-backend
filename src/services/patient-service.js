@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { patient } = require('../models');
+const { lab, patient } = require('../models');
 
 exports.createPatient = (patientData) => patient.create(patientData);
 
@@ -40,9 +40,11 @@ exports.updatePatientById = (hnId, body) =>
 exports.searchPatient = async (search) => {
   const searching = await patient.findAll({
     where: {
-      firstName: {
-        [Op.like]: `%${search}%`,
-      },
+      [Op.or]: [
+        { firstName: { [Op.like]: `%${search}%` } },
+        { lastName: { [Op.like]: `%${search}%` } },
+        { hnId: { [Op.like]: `%${search}%` } },
+      ],
     },
   });
   return searching;
@@ -54,3 +56,5 @@ exports.deletePatient = async (hnId) => {
   });
   return deletePatient;
 };
+
+exports.createLab = (labData) => lab.create(labData);
