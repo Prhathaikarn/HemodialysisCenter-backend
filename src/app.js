@@ -10,6 +10,7 @@ const notFoundMiddleware = require('./middlewares/not-found');
 const errorMiddleware = require('./middlewares/error');
 const authRoute = require('./routes/auth-route');
 const patientRoute = require('./routes/patient-route');
+const authenticate = require('./middlewares/authenticate');
 
 const app = express();
 
@@ -30,7 +31,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/auth', authRoute);
-app.use('/patient', patientRoute);
+app.use('/patient', authenticate, patientRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);

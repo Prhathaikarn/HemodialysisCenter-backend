@@ -7,18 +7,18 @@ module.exports = async (req, res, next) => {
     const authorization = req.headers.authorization;
 
     if (!authorization || !authorization.startsWith('Bearer ')) {
-      createError(1, 'Unauthorized', 401);
+      createError('Unauthorized', 401);
     }
 
     const token = authorization.split(' ')[1];
     if (!token) {
-      createError(2, 'Unauthorized', 401);
+      createError('Unauthorized', 401);
     }
     const payload = tokenService.verify(token);
-    console.log(payload);
+    // console.log(payload);
 
     const user = await userService.getUserbyId(payload.id);
-    console.log(user);
+    // console.log(user);
     if (!user) {
       createError('Unauthorized', 401);
     }

@@ -70,8 +70,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       underscored: true,
+      paranoid: true,
     }
   );
+  patient.associate = (models) => {
+    patient.hasMany(models.lab, {
+      foreignKey: {
+        name: 'hnId',
+        allowNull: false,
+      },
+      onDelete: 'RESTRICT',
+    });
+  };
 
   return patient;
 };

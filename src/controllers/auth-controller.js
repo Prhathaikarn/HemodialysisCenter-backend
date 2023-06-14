@@ -35,10 +35,10 @@ exports.login = async (req, res, next) => {
   try {
     const loginValidate = validate(loginSchema);
     const value = loginValidate(req.body);
-    console.log('value--------', value);
+    // console.log('value--------', value);
 
     const user = await userService.getUserbyNurseId(value.nurseId);
-    console.log('user---------', user);
+    // console.log('user---------', user);
 
     if (!user) {
       createError('invalid credential', 400);
