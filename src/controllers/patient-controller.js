@@ -5,7 +5,7 @@ exports.addPatient = async (req, res, next) => {
   try {
     const user = req.user;
     if (!user) {
-      createError('You are unauthorize', 401);
+      createError('You are unauthorize', 401); ///
     }
     const value = req.body;
     const isPatientExist = await patientService.checkPatientExist(value.hnId);
@@ -15,7 +15,7 @@ exports.addPatient = async (req, res, next) => {
     const addPatient = await patientService.createPatient(value);
     res.status(200).json({ message: 'Add Success !' });
   } catch (err) {
-    next(err);
+    next(err); ////
   }
 };
 
@@ -67,6 +67,18 @@ exports.deletePatient = async (req, res, next) => {
     const { hnId } = req.params;
     const result = await patientService.deletePatient(hnId);
     res.status(200).json({ message: 'Delete Success !' });
+  } catch (err) {
+    next(err);
+  }
+};
+
+///// LAB //////
+
+exports.addLab = async (req, res, next) => {
+  try {
+    const value = req.body;
+    const addLab = await patientService.createLab(value);
+    res.status(200).json({ message: 'Add Lab Success !' });
   } catch (err) {
     next(err);
   }
